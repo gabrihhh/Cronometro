@@ -24,7 +24,9 @@ for (var i = 0; i <= 60; i++) {
 }
 
 
-btn.addEventListener('click',()=>{
+
+
+btn.addEventListener('click',function myInterval(){
     let h = parseInt(hora.value);
     let m = parseInt(minuto.value);
     let s = parseInt(segundo.value); 
@@ -34,19 +36,22 @@ btn.addEventListener('click',()=>{
 
     
 
-    if(s==0&&m>0){m--;s=60}
-    if(m==0&&h>0){h--;m=60}
+    if(s==0&&m>0){m--;s=59}
+    if(m==0&&h>0){h--;m=59}
+
+    if(h.toString().length==1){h='0'+h}
+    if(m.toString().length==1){m='0'+m}
+    if(s.toString().length==1){s='0'+s}
     
     tela.textContent = h+':'+m+':'+s
-
 
     s--
     if(s==0&&m==0){s=0}
     
+    if(h==0&&m==0&&s<0){}// aqui vem a ordem de parada do setInterval
     
 
    },1000);
-
    
 
 })
